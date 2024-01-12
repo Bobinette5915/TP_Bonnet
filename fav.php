@@ -11,8 +11,8 @@ $sql2 = "SELECT * FROM `user` WHERE `email`= :mail";
     $query->execute();
     $controle = $query->fetch();
 
-echo $controle['id'];
-echo $choix;
+// echo $controle['id'];
+// echo $choix;
 
 $sql9 = "INSERT INTO `favoris`(`id_user`, `id_article`) VALUES (:idUser, :idArticle)";
 $query = $db->prepare($sql9);

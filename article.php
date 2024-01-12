@@ -53,7 +53,9 @@ include("header.php");
                         <?php 
                         
                         
-                            if (empty($controleListe)) { ?>
+                            if (empty($controleListe) && $_SESSION['mail-Utilisateur'] !== null ) { 
+                                    
+                                ?>
                             <form  action='fav.php?article=<?php echo $choix?>' method="post">
                             
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
@@ -61,19 +63,23 @@ include("header.php");
                             Mettre en Favoris
                             </button>
                             
-                                <?php
+                                <?php }
                                 
                                 
                                     
-                                }
-                            else { ?>
+                                
+                            elseif ($_SESSION['mail-Utilisateur'] !== null){ ?>
                                 <form  action='suppr.php?article=<?php echo $choix?>' method="post">
 
                                     <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                     <i class="bi bi-star-fill"></i>    Retirer des Favoris
                                     </button>
                             
-                                <?php } ?>
+                                <?php } 
+                                else {
+                                    echo ("<a href='login.php'><div class='alert alert-primary col-md-5' role='alert'>
+                                    Connectez vous pour mettre cet article dans vos favoris</div></a> ");
+                                }?>
                             </form>
                         </div>
                     </div>
@@ -87,7 +93,9 @@ include("header.php");
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     
                     <?php
-                    for ($i=0; $i < 4; $i++) { 
+                    $nombreTotalElements = count($articles);
+                    for ($i = $nombreTotalElements - 1; $i >= $nombreTotalElements - 4; $i--) {
+
                         echo ('<div class="col mb-5">
                         <div class="card h-100">
                             <img  height="300" class="card-img-top" src="'.$articles[$i]['image'].'" alt="'.$articles[$i]['nom'].'" />

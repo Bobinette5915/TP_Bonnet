@@ -27,7 +27,8 @@ include("header.php");
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     
 <?php
-foreach ($articles as $article){
+$articlesReverse = array_reverse($articles);
+foreach ($articlesReverse as $article){
     echo ('<div class="col mb-5">
     <div class="card h-100">
         <img  height="300" class="card-img-top" src="'.$article['image'].'" alt="'.$article['nom'].'" />
